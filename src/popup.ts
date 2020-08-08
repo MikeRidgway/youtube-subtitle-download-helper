@@ -12,7 +12,7 @@ window.onload = () => {
     chrome.tabs.sendMessage(tabs[0].id!, sendData, (response) => {
       if (response.error) {
         console.log(response.error);
-        displayMessage('This video has none caption.');
+        displayMessage('This video has no captions.');
         return;
       }
       if (response.captions) {
