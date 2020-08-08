@@ -3,7 +3,11 @@ export default class VideoInfoParser {
 
   public getCaptionsData(): Array<any> {
     if (!this.decodeVideoInfoResponse().captions.playerCaptionsTracklistRenderer.captionTracks) {
-      throw new Error('This video has not caption.');
+      throw new Error('This video has no captions.');
+      //get_video_info sometimes fails to produce captions in videos that DO have captions, 
+      //due to flags being set by the video creators, including the "do not embed" flag.  
+      //You may want to check to see if the embeddable flag is true so that you could give a more accurate error message in such cases.
+
     }
     return this.decodeVideoInfoResponse().captions.playerCaptionsTracklistRenderer.captionTracks;
   }
